@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cd462d769456534c8d814dfbe5f2428, type: 3}
-  m_Name: MunsterCheese
+  m_Name: Bread
   m_EditorClassIdentifier: 
-  DisplayName: Munster Cheese
-  Description: Cheese from monster
+  DisplayName: Bread
+  Description: a fluffy and comforting loaf
   Image: {fileID: 0}
-  IsMonsterIngredient: 1
-  Type: 7
+  IsMonsterIngredient: 0
+  Type: 0
   Uses: 1

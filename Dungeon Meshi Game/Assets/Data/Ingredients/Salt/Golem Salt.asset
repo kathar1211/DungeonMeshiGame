@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd462d769456534c8d814dfbe5f2428, type: 3}
   m_Name: Golem Salt
   m_EditorClassIdentifier: 
-  DisplayName: Salt
-  Description: normal salt
+  DisplayName: Golem Salt
+  Description: Salt from a rock salt golem
   Image: {fileID: 0}
+  IsMonsterIngredient: 1
   Type: 6
   Uses: 1

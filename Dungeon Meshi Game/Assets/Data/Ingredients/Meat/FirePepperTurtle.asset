@@ -15,5 +15,6 @@ MonoBehaviour:
   DisplayName: Fire Pepper Turtle Meat
   Description: 
   Image: {fileID: 0}
+  IsMonsterIngredient: 1
   Type: 3
   Uses: 1

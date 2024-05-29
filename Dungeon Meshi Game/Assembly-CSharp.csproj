@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ScriptableObjects\RecipeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\IngredientScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\NoListScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>

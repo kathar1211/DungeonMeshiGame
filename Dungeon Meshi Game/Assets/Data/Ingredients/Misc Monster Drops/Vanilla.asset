@@ -15,5 +15,6 @@ MonoBehaviour:
   DisplayName: Spooky Vanilla
   Description: Fragrant beans dropped from a monster vanilla flower
   Image: {fileID: 0}
+  IsMonsterIngredient: 1
   Type: 4
   Uses: 1

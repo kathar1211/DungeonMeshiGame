@@ -15,5 +15,6 @@ MonoBehaviour:
   DisplayName: Monster Chocolate
   Description: Weird brown stuff dropped from a chocolate monster
   Image: {fileID: 0}
+  IsMonsterIngredient: 1
   Type: 4
   Uses: 1

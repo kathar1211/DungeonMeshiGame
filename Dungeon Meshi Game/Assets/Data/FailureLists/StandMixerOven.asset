@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cd462d769456534c8d814dfbe5f2428, type: 3}
-  m_Name: MunsterCheese
+  m_Script: {fileID: 11500000, guid: b113e25802cbdb64ca1e0fcf33483de0, type: 3}
+  m_Name: StandMixerOven
   m_EditorClassIdentifier: 
-  DisplayName: Munster Cheese
-  Description: Cheese from monster
-  Image: {fileID: 0}
-  IsMonsterIngredient: 1
-  Type: 7
-  Uses: 1
+  RecipeType: 0
+  SpecificIngredients: []
+  FlexibleIngredients: 
