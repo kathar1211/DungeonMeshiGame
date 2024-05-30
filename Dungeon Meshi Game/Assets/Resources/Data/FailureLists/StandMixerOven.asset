@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b113e25802cbdb64ca1e0fcf33483de0, type: 3}
+  m_Name: StandMixerOven
+  m_EditorClassIdentifier: 
+  RecipeType: 0
+  SpecificIngredients:
+  - {fileID: 11400000, guid: b372ebab04b62b340b2c921af43c404d, type: 2}
+  - {fileID: 11400000, guid: bd72fceb6c6ea3f4abf1aac7b6a81678, type: 2}
+  - {fileID: 11400000, guid: 0ee271a25697e234795e2aa9b526df7b, type: 2}
+  - {fileID: 11400000, guid: 0a1493c3ec88fc24c9ddd61125a457e7, type: 2}
+  - {fileID: 11400000, guid: f9e3c571aa4ded94a8d3f3c927bc0350, type: 2}
+  FlexibleIngredients: 0900000008000000
