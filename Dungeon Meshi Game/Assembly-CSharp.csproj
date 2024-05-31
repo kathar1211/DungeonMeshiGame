@@ -59,10 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\UI\InventoryDisplay.cs" />
+    <Compile Include="Assets\Scripts\Managers\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\RecipeScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Managers\RecipeManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\IngredientScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\NoListScriptableObject.cs" />
-    <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryDisplayEntry.cs" />
   </ItemGroup>

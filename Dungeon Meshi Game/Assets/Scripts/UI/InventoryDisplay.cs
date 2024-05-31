@@ -16,9 +16,6 @@ public class InventoryDisplay : MonoBehaviour
 
     private int minEntries = 16; //show empty boxes if we have fewer entries than this
 
-    public Color EmptyEntryTint;
-    public Color SelectedEntryTint;
-
     public enum Tab { FruitVeg, AnimalProduct, Meat, Grain, Misc}
     private Tab currentTab;
 
@@ -52,24 +49,29 @@ public class InventoryDisplay : MonoBehaviour
     public void OnFruitVegTabSelected()
     {
         currentTab = Tab.FruitVeg;
+        UpdateUI();
     }
 
     public void OnAnimalProductTabSelected()
     {
         currentTab = Tab.AnimalProduct;
+        UpdateUI();
     }
     public void OnMeatTabSelected()
     {
         currentTab = Tab.Meat;
+        UpdateUI();
     }
 
     public void OnGrainTabSelected()
     {
         currentTab = Tab.Grain;
+        UpdateUI();
     }
     public void OnMiscTabSelected()
     {
         currentTab = Tab.Misc;
+        UpdateUI();
     }
 
     private void UpdateUI()
