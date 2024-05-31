@@ -8,6 +8,7 @@ public class InventoryDisplayEntry : MonoBehaviour
 {
     public InventoryDisplay ParentDisplay;
     public Canvas ParentCanvas;
+    public IngredientSelectionBasket Basket;
     public TextMeshProUGUI textLabel;
     public Image spriteLabel;
     public Image backgroundImage;
@@ -16,10 +17,9 @@ public class InventoryDisplayEntry : MonoBehaviour
     public Color emptyBoxColor;
     public Color defaultColor;
 
-    private bool selected = false;
     private IngredientScriptableObject ingredient;
 
-    private Image dragCopy; //copy of the image that gets dragged around
+    private GameObject dragCopy; //copy of the image that gets dragged around
 
     // Start is called before the first frame update
     void Start()
@@ -57,10 +57,11 @@ public class InventoryDisplayEntry : MonoBehaviour
         }
     }
 
-    public void SetParents(InventoryDisplay displayParent, Canvas canvasParent)
+    public void SetParents(InventoryDisplay displayParent, Canvas canvasParent, IngredientSelectionBasket basket)
     {
         ParentCanvas = canvasParent;
         ParentDisplay = displayParent;
+        Basket = basket;
     }
 
     public void OnHover()
@@ -87,7 +88,15 @@ public class InventoryDisplayEntry : MonoBehaviour
     {
         if (ingredient == null) { return; }
 
-        dragCopy = Instantiate(spriteLabel);
+        if (spriteLabel.gameObject.activeSelf)
+        {
+            dragCopy = Instantiate(spriteLabel.gameObject, ParentCanvas.transform);
+        }
+        else
+        {
+            dragCopy = Instantiate(textLabel.gameObject, ParentCanvas.transform);
+        }
+        
 
         Debug.Log("drag begin");
     }
@@ -114,11 +123,23 @@ public class InventoryDisplayEntry : MonoBehaviour
         //unselect this ingredient
         OnExitHover();
 
-        //destroy our hovering icon
-        Destroy(dragCopy.gameObject);
-        dragCopy = null;
 
-        //todo: detect whether to put da ingredient in da basket
+
+        // detect whether to put da ingredient in da basket
+        if (Basket.IsGameobjectInDragArea(dragCopy))
+        {
+            Basket.AddIngredient(ingredient, dragCopy);
+
+            //sever our connection to this gameobject
+            dragCopy = null;
+        }
+        else
+        {
+            //destroy our hovering icon
+            Destroy(dragCopy.gameObject);
+            dragCopy = null;
+        }
+        
 
         Debug.Log("drag over");
     }

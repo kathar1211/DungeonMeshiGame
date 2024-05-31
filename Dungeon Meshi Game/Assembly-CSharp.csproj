@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\IngredientScriptableObject.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\NoListScriptableObject.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\UI\IngredientSelectionBasket.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryDisplayEntry.cs" />
   </ItemGroup>
   <ItemGroup>

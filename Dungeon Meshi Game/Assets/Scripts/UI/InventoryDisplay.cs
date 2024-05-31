@@ -9,6 +9,7 @@ public class InventoryDisplay : MonoBehaviour
 {
     public InventoryDisplayEntry InventoryEntryPrefab;
     public Transform EntryAttachTarget;
+    public IngredientSelectionBasket Basket;
 
     private InventoryManager PlayerInventory;
 
@@ -117,7 +118,7 @@ public class InventoryDisplay : MonoBehaviour
         {
             InventoryDisplayEntry newEntry = Instantiate<InventoryDisplayEntry>(InventoryEntryPrefab, EntryAttachTarget);
             newEntry.SetData(ingredient);
-            newEntry.SetParents(this, ParentCanvas);
+            newEntry.SetParents(this, ParentCanvas, Basket);
         }
 
         //keep going with empty entries if we need to fill out the page
@@ -127,7 +128,7 @@ public class InventoryDisplay : MonoBehaviour
             {
                 InventoryDisplayEntry newEntry = Instantiate<InventoryDisplayEntry>(InventoryEntryPrefab, EntryAttachTarget);
                 newEntry.SetData(null);
-                newEntry.SetParents(this, ParentCanvas);
+                newEntry.SetParents(this, ParentCanvas, Basket);
             }
         }
         

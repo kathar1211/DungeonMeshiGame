@@ -11,12 +11,12 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d43b0391e1f311043a6414153d315f74, type: 3}
   m_Name: FailedDish
-  m_EditorClassIdentifier: 
-  DisplayName: 
-  Description: 
+  m_EditorClassIdentifier:
+  DisplayName: Monstrous Meat Loaf
+  Description: something went wrong :(
   Image: {fileID: 0}
   BaseValue: 0
-  RecipeType: 0
+  RecipeType: 2
   SpecificIngredients: []
   FlexibleIngredients: 
   TextParameters: 
