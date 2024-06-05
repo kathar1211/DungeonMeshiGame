@@ -37,6 +37,8 @@ public class IngredientSelectionBasket : MonoBehaviour
         selectedIngredients.Add(ingredient);
 
         icon.transform.SetParent(IngredientAttachTarget);
+
+        //maybe add some new event listeners/handlers here for dragging these around
     }
 
     public void ClearIngredients()

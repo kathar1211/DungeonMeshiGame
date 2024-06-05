@@ -63,8 +63,11 @@
     <Compile Include="Assets\Scripts\ScriptableObjects\RecipeScriptableObject.cs" />
     <Compile Include="Assets\Scripts\Managers\RecipeManager.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\IngredientScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\Cooking\CookingActionList.cs" />
     <Compile Include="Assets\Scripts\ScriptableObjects\NoListScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\UI\TextBox.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Cooking\KitchenUtensil.cs" />
     <Compile Include="Assets\Scripts\UI\IngredientSelectionBasket.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryDisplayEntry.cs" />
   </ItemGroup>

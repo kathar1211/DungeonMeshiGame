@@ -6,6 +6,7 @@ using UnityEngine;
 public class RecipeManager : MonoBehaviour
 {
     private List<RecipeScriptableObject> AllRecipes;
+    private List<NoListScriptableObject> AllFailLists;
 
     [SerializeField] RecipeScriptableObject DefaultRecipe; //what do we return if a valid recipe is not found
 
@@ -13,6 +14,7 @@ public class RecipeManager : MonoBehaviour
     void Awake()
     {
         GetAllRecipes();
+        GetAllFailLists();
     }
 
     // Update is called once per frame
@@ -24,6 +26,11 @@ public class RecipeManager : MonoBehaviour
     void GetAllRecipes()
     {
         AllRecipes = Resources.LoadAll<RecipeScriptableObject>("Data/Recipes").ToList();
+    }
+
+    void GetAllFailLists()
+    {
+        AllFailLists = Resources.LoadAll<NoListScriptableObject>("Data/FailureLists").ToList();
     }
 
     public RecipeScriptableObject GetRecipeForIngredients(List<IngredientScriptableObject> ingredients)
@@ -39,8 +46,15 @@ public class RecipeManager : MonoBehaviour
 
     public RecipeScriptableObject GetRecipeForIngredients(List<IngredientScriptableObject> ingredients, RecipeType type)
     {
-        //todo: if something from the fail list is present, this is a failure
+        //if something from the fail list is present, this is a failure
+        foreach (NoListScriptableObject noList in AllFailLists)
+        {
+            if (noList.RecipeType != type) { continue; }
 
+            if (HasFailListIngredients(noList, ingredients)) { return DefaultRecipe; }
+        }
+
+        //now go through our recipes looking for a positive match
         foreach (RecipeScriptableObject recipe in AllRecipes)
         {
             if (recipe == DefaultRecipe) { continue; } //dont want false positives: you can always make a failed dish
@@ -50,12 +64,13 @@ public class RecipeManager : MonoBehaviour
             if (RecipeCanSucceed(recipe, ingredients)) { return recipe; }
         }
 
+        //no match found
         return DefaultRecipe;
     }
 
     //returns true if this recipe's requirements are met by this list of ingredients
    private bool RecipeCanSucceed(RecipeScriptableObject recipe, List<IngredientScriptableObject> ingredients)
-    {
+   {
 
         foreach (IngredientScriptableObject specificIngredient in recipe.SpecificIngredients)
         {
@@ -85,12 +100,50 @@ public class RecipeManager : MonoBehaviour
         //now do it again w the more flexible requirements
         foreach(IngredientCategory nonSpecificIngredient in recipe.FlexibleIngredients)
         {
-            IngredientScriptableObject ingredientMatch = ingredients.DefaultIfEmpty(null).First(x => x.Type == nonSpecificIngredient);
+            IngredientScriptableObject ingredientMatch = null;
+            foreach (IngredientScriptableObject ingredient in ingredients)
+            {
+                if (ingredient.Type == nonSpecificIngredient)
+                {
+                    ingredientMatch = ingredient;
+                    break;
+                }
+            }
             if (ingredientMatch == null) { return false; }
             else { ingredients.Remove(ingredientMatch); }
         }
 
         //we made it to the end without finding any unmet conditions
         return true;
+   }
+
+    private bool HasFailListIngredients(NoListScriptableObject failList, List<IngredientScriptableObject> ingredients)
+    {
+        foreach (IngredientScriptableObject specificIngredient in failList.SpecificIngredients)
+        {
+            foreach (IngredientScriptableObject ingredient in ingredients)
+            {
+                if (ingredient.DisplayName == specificIngredient.DisplayName)
+                {
+                    return true;
+                }
+            }
+
+        }
+
+        foreach (IngredientCategory flexibleIngredient in failList.FlexibleIngredients)
+        {
+            foreach (IngredientScriptableObject ingredient in ingredients)
+            {
+                if (ingredient.Type == flexibleIngredient)
+                {
+                    return true;
+                }
+            }
+
+        }
+
+        //we made it to the end of the list without finding a match
+        return false;
     }
 }

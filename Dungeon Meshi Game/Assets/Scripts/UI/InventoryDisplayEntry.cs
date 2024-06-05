@@ -71,7 +71,6 @@ public class InventoryDisplayEntry : MonoBehaviour
         ParentDisplay.SetSelectedIngredient(ingredient.DisplayName);
         backgroundImage.color = selectedColor;
 
-        Debug.Log("hover enter");
     }
 
     public void OnExitHover()
@@ -81,7 +80,6 @@ public class InventoryDisplayEntry : MonoBehaviour
         ParentDisplay.SetSelectedIngredient(null);
         backgroundImage.color = defaultColor;
 
-        Debug.Log("hover exit");
     }
 
     public void OnClickAndDrag()
@@ -96,9 +94,6 @@ public class InventoryDisplayEntry : MonoBehaviour
         {
             dragCopy = Instantiate(textLabel.gameObject, ParentCanvas.transform);
         }
-        
-
-        Debug.Log("drag begin");
     }
 
     public void OnDrag()
@@ -113,7 +108,6 @@ public class InventoryDisplayEntry : MonoBehaviour
             Input.mousePosition, ParentCanvas.worldCamera,
             out movePos);
         dragCopy.transform.position = ParentCanvas.transform.TransformPoint(movePos);
-
     }
 
     public void OnEndDrag()
@@ -122,8 +116,6 @@ public class InventoryDisplayEntry : MonoBehaviour
 
         //unselect this ingredient
         OnExitHover();
-
-
 
         // detect whether to put da ingredient in da basket
         if (Basket.IsGameobjectInDragArea(dragCopy))
@@ -140,7 +132,5 @@ public class InventoryDisplayEntry : MonoBehaviour
             dragCopy = null;
         }
         
-
-        Debug.Log("drag over");
     }
 }
