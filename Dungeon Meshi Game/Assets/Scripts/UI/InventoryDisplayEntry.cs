@@ -102,12 +102,13 @@ public class InventoryDisplayEntry : MonoBehaviour
         if (dragCopy == null) { return; }
 
         //update the position of the copy of our sprite so it follows the mouse
-        Vector2 movePos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            ParentCanvas.transform as RectTransform,
-            Input.mousePosition, ParentCanvas.worldCamera,
-            out movePos);
-        dragCopy.transform.position = ParentCanvas.transform.TransformPoint(movePos);
+        /* Vector2 movePos;
+         RectTransformUtility.ScreenPointToLocalPointInRectangle(
+             ParentCanvas.transform as RectTransform,
+             Input.mousePosition, ParentCanvas.worldCamera,
+             out movePos);
+         dragCopy.transform.position = ParentCanvas.transform.TransformPoint(movePos);*/
+        CanvasUtils.SetUIObjectToMousePosition(dragCopy);
     }
 
     public void OnEndDrag()
