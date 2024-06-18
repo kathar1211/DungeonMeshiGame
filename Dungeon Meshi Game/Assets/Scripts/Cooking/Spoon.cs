@@ -15,20 +15,37 @@ public class Spoon : MonoBehaviour
     private bool IsBeingDragged = false;
 
     public float StirAmount; //how much do we need to stir to fill the meter
+    public float TimeToComplete;
     private float StirProgress; //how much have we stirred so far
 
-    public Image meter;
+    public MeterDisplay meter;
+    public TimerDisplay timer;
+
+    public float stirDistanceToMeterConversion;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartSpoonTask(StirAmount, TimeToComplete);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void StartSpoonTask(float amountToStir, float timeToStir)
+    {
+        CanStir = true;
+
+        meter.SetMaxAmount(amountToStir);
+        meter.ResetAndShowMeter();
+
+        timer.SetMaxTime(timeToStir);
+        timer.StartTimer();
+
+        //we'll also want to show some arrows at this point to indicate to the user what they should do
     }
 
     public void OnBeginDrag()
@@ -39,19 +56,31 @@ public class Spoon : MonoBehaviour
     public void OnDrag()
     {
         //start by just following x position of the mouse
-        Vector3 prevPosition = new Vector3();
-        //this.transform.position.co
+        Vector3 prevPosition = this.transform.localPosition;
         CanvasUtils.SetUIObjectToMousePosition(this.gameObject);
-    }
 
+        //lock y and z
+        this.transform.localPosition = new Vector3(transform.localPosition.x, prevPosition.y, prevPosition.z);
+
+        //keep x in bounds
+        if (CanvasUtils.IsPointInsideRect(transform.position, LeftBoundary))
+        {
+            transform.position = new Vector3(LeftBoundary.position.x + ((LeftBoundary.rect.xMax - LeftBoundary.rect.xMin) / 2f), transform.position.y, transform.position.z);
+        }
+        if (CanvasUtils.IsPointInsideRect(transform.position, RightBoundary))
+        {
+            transform.position = new Vector3(RightBoundary.position.x - ((RightBoundary.rect.xMax - RightBoundary.rect.xMin) / 2f), transform.position.y, transform.position.z);
+        }
+
+        //update meter as we move
+        float stirDistance = Mathf.Abs(prevPosition.x - transform.localPosition.x);
+        meter.AddToMeter(stirDistance * stirDistanceToMeterConversion);
+        
+    }
 
     public void OnDragEnd()
     {
         IsBeingDragged = false;
     }
 
-    public void Updatemeter()
-    {
-        meter.fillAmount = StirProgress / StirAmount;
-    }
 }

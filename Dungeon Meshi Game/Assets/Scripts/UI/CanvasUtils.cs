@@ -16,13 +16,9 @@ public class CanvasUtils : MonoBehaviour
         if (Instance != null && Instance != this)
         {
             Destroy(Instance.gameObject);
-            Instance = this;
         }
-        else
-        {
-            Instance = this;
-        }
-
+        
+        Instance = this;
         MainCanvas = this.GetComponent<Canvas>();
     }
 
@@ -41,6 +37,14 @@ public class CanvasUtils : MonoBehaviour
             Input.mousePosition, Instance.MainCanvas.worldCamera,
             out movePos);
         gameObject.transform.position = Instance.MainCanvas.transform.TransformPoint(movePos);
+    }
+
+    public static bool IsPointInsideRect(Vector3 pointWorldPosition, RectTransform containingRect)
+    {
+        Vector3 dif = pointWorldPosition - containingRect.transform.position;
+        float xDif = Mathf.Abs(dif.x);
+        float yDif = Mathf.Abs(dif.y);
+        return (xDif <= (containingRect.rect.xMax - containingRect.rect.xMin) / 2f && yDif <= (containingRect.rect.yMax - containingRect.rect.yMin) / 2f);
     }
 
 

@@ -70,8 +70,10 @@
     <Compile Include="Assets\Scripts\UI\TextBox.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Cooking\KitchenUtensil.cs" />
+    <Compile Include="Assets\Scripts\UI\MeterDisplay.cs" />
     <Compile Include="Assets\Scripts\UI\IngredientSelectionBasket.cs" />
     <Compile Include="Assets\Scripts\UI\InventoryDisplayEntry.cs" />
+    <Compile Include="Assets\Scripts\UI\TimerDisplay.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
