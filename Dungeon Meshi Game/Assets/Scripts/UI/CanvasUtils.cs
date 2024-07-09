@@ -39,12 +39,25 @@ public class CanvasUtils : MonoBehaviour
         gameObject.transform.position = Instance.MainCanvas.transform.TransformPoint(movePos);
     }
 
-    public static bool IsPointInsideRect(Vector3 pointWorldPosition, RectTransform containingRect)
+    public static bool IsPointInsideRect(Vector3 pointWorldPosition, RectTransform containingRect, bool debug = false)
     {
-        Vector3 dif = pointWorldPosition - containingRect.transform.position;
-        float xDif = Mathf.Abs(dif.x);
-        float yDif = Mathf.Abs(dif.y);
-        return (xDif <= (containingRect.rect.xMax - containingRect.rect.xMin) / 2f && yDif <= (containingRect.rect.yMax - containingRect.rect.yMin) / 2f);
+        Vector3[] worldPosContainingCorners = new Vector3[4];
+        containingRect.GetWorldCorners(worldPosContainingCorners); //order of these corners is bottom left, top left, top right, bottom right
+
+        if (debug)
+        {
+            Debug.Log("point position: " + pointWorldPosition.ToString() + " \n bottom left position: " + worldPosContainingCorners[0].ToString()
+                + " \n top left position: " + worldPosContainingCorners[1].ToString() + " \n top right position: " + worldPosContainingCorners[2].ToString()
+                + " \n bottom right position: " + worldPosContainingCorners[3].ToString());
+        }
+
+        if (pointWorldPosition.x > worldPosContainingCorners[0].x && pointWorldPosition.x < worldPosContainingCorners[2].x
+            && pointWorldPosition.y > worldPosContainingCorners[0].y && pointWorldPosition.y < worldPosContainingCorners[2].y)
+        {
+            return true;
+        }
+
+        return false;
     }
 
 

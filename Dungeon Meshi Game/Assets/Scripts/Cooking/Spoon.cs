@@ -32,7 +32,7 @@ public class Spoon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void StartSpoonTask(float amountToStir, float timeToStir)
@@ -65,11 +65,15 @@ public class Spoon : MonoBehaviour
         //keep x in bounds
         if (CanvasUtils.IsPointInsideRect(transform.position, LeftBoundary))
         {
-            transform.position = new Vector3(LeftBoundary.position.x + ((LeftBoundary.rect.xMax - LeftBoundary.rect.xMin) / 2f), transform.position.y, transform.position.z);
+            Vector3[] result = new Vector3[4];
+            LeftBoundary.GetWorldCorners(result);
+            transform.position = new Vector3(result[2].x, transform.position.y, transform.position.z);
         }
         if (CanvasUtils.IsPointInsideRect(transform.position, RightBoundary))
         {
-            transform.position = new Vector3(RightBoundary.position.x - ((RightBoundary.rect.xMax - RightBoundary.rect.xMin) / 2f), transform.position.y, transform.position.z);
+            Vector3[] result = new Vector3[4];
+            RightBoundary.GetWorldCorners(result);
+            transform.position = new Vector3(result[0].x, transform.position.y, transform.position.z);
         }
 
         //update meter as we move
